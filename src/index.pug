@@ -1,0 +1,74 @@
+extends ./layout.pug
+block content
+  nav
+    .container.d-flex.align-items-end
+      .select-section
+        h1.font-weight-bold 空氣品質指標 (AQI)
+        select(name="selectCountry")#selectCountry.font-weight-bold
+          option(value="" disabled selected style="display: none") 請選擇地區
+          option(value="台北市") 台北市
+      .air-status
+        table.table.mb-0
+          thead
+            tr
+              th.status.status-good 0～50
+              th.status.status-ordinary 51～100
+              th.status.status-sensitive 101～150
+              th.status.status-unhealthy 151～200
+              th.status.status-unhealthy-hard 201～300
+              th.status.status-harm 301～400
+          tbody
+            tr
+              td 良好
+              td 普通
+              td 對敏感族群
+                br
+                | 不健康
+              td 對敏感族群
+                br
+                | 不健康
+              td 非常不健康
+              td 危害
+  .dashboard
+    .container
+      .title.d-flex.align-items-center
+        h2.mb-0 未指定
+        span
+        div.update 
+          span 2019-01-24 14:00
+          span 更新
+      .d-flex.align-items-start
+        .result-detail
+          .detail-header.d-flex
+            span.font-weight-bold 前金
+            span.status 156
+          .detail-body
+            ul.list-unstyled
+              li.d-flex 
+                span 臭氧
+                span.engName O3 (ppb)
+                span 82
+              li.d-flex
+                span 懸浮微粒
+                span.engName PM10 (μg/m³)
+                span 72
+              li.d-flex
+                span 細懸浮微粒
+                span.engName PM2.5 (μg/m³)
+                span 67
+              li.d-flex
+                span 一氧化碳
+                span.engName CO (ppm)
+                span 0.49
+              li.d-flex
+                span 二氧化硫
+                span.engName SO2 (ppb)
+                span 3.4
+              li.d-flex
+                span 二氧化氮
+                span.engName NO2 (ppb)
+                span 13
+        .result-list.d-flex.justify-content-between.flex-wrap
+          .detail-header.d-flex
+            span.font-weight-bold 前金
+            span.status 156
