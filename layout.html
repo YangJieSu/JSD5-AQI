@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>JSD5-AQI</title>
+    <meta property="og:title" content="地下城-全台空氣指標儀表板"/>
+    <meta property="og:description" content="六角學院的JS地下城攻略"/>
+    <meta property="og:site_name" content="地下城-全台空氣指標儀表板"/>
+    <meta property="og:locale" content="zh_TW"/>
+    <link href="./css/all.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <div class="wrap" id="app">
+      <header></header>
+      <main>
+      </main>
+      <footer>
+        <div class="container">
+          <div class="footer-info d-flex justify-content-between"><span>資料來源：行政院環境保護署</span>
+            <p class="m-0">Copyright © 2019 HexSchool. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+      <div class="loading d-flex justify-content-center align-items-center" v-if="loading"><span></span><span></span><span></span></div>
+    </div>
+    <script src="./js/vendors.js"></script>
+    <script src="./js/all.js"></script>
+  </body>
+</html>

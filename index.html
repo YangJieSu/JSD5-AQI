@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>JSD5-AQI</title>
+    <meta property="og:title" content="地下城-全台空氣指標儀表板"/>
+    <meta property="og:description" content="六角學院的JS地下城攻略"/>
+    <meta property="og:site_name" content="地下城-全台空氣指標儀表板"/>
+    <meta property="og:locale" content="zh_TW"/>
+    <link href="./css/all.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <div class="wrap" id="app">
+      <header></header>
+      <main>
+        <nav>
+          <div class="container d-flex align-items-end">
+            <div class="select-section">
+              <h1 class="font-weight-bold">空氣品質指標 (AQI)</h1>
+              <select class="font-weight-bold" name="selectCountry" v-model="selectCountry" id="selectCountry">
+                <option value="" disabled="disabled" selected="selected" style="display: none">請選擇地區</option>
+                <option :value="item" v-for="item in filterCountry">{{ item }}</option>
+              </select>
+            </div>
+            <div class="air-status">
+              <table class="table mb-0">
+                <thead>
+                  <tr>
+                    <th class="status status-good">0～50</th>
+                    <th class="status status-ordinary">51～100</th>
+                    <th class="status status-sensitive">101～150</th>
+                    <th class="status status-unhealthy">151～200</th>
+                    <th class="status status-unhealthy-hard">201～300</th>
+                    <th class="status status-harm">301～400</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>良好</td>
+                    <td>普通</td>
+                    <td>對敏感族群<br/>不健康</td>
+                    <td>對敏感族群<br/>不健康</td>
+                    <td>非常不健康</td>
+                    <td>危害</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </nav>
+        <div class="dashboard" v-if="detailData.SiteName">
+          <div class="container">
+            <div class="title d-flex align-items-center">
+              <h2 class="mb-0 font-weight-bold" v-if="selectCountry">{{ selectCountry }}</h2>
+              <h2 class="mb-0 font-weight-bold" v-else="v-else">全部</h2><span></span>
+              <div class="update"> <span>{{ updateTime }}</span><span @click="getAQI()">更新</span></div>
+            </div>
+            <div class="d-flex align-items-start">
+              <div class="result-detail">
+                <div class="detail-header d-flex"><span class="font-weight-bold">{{ detailData.SiteName }}</span><span class="status" :class="statusColor(detailData.Status)" v-if="detailData.AQI">{{ detailData.AQI }}            </span><span class="font-weight-bold" v-else="v-else">N/A</span></div>
+                <div class="detail-body">
+                  <ul class="list-unstyled">
+                    <li class="d-flex"> <span>臭氧</span><span class="engName">O3 (ppb)</span><span>{{ detailData.O3 }}</span></li>
+                    <li class="d-flex"><span>懸浮微粒</span><span class="engName">PM10 (μg/m³)</span><span>{{ detailData["PM10"] }}</span></li>
+                    <li class="d-flex"><span>細懸浮微粒</span><span class="engName">PM2.5 (μg/m³)</span><span>{{ detailData["PM2.5"] }}</span></li>
+                    <li class="d-flex"><span>一氧化碳</span><span class="engName">CO (ppm)</span><span>{{ detailData.CO }}</span></li>
+                    <li class="d-flex"><span>二氧化硫</span><span class="engName">SO2 (ppb)</span><span>{{ detailData.SO2 }}</span></li>
+                    <li class="d-flex"><span>二氧化氮</span><span class="engName">NO2 (ppb)</span><span>{{ detailData.NO2 }}</span></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="result-list d-flex justify-content-between flex-wrap">
+                <div class="detail-header d-flex" v-for="item in filterCountryData"><span class="font-weight-bold" @click="showDetail(item)">{{ item.SiteName }}</span><span class="status" :class="statusColor(item.Status)" v-if="item.AQI">{{ item.AQI }}</span><span class="status" v-else="v-else">N/A</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer>
+        <div class="container">
+          <div class="footer-info d-flex justify-content-between"><span>資料來源：行政院環境保護署</span>
+            <p class="m-0">Copyright © 2019 HexSchool. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+      <div class="loading d-flex justify-content-center align-items-center" v-if="loading"><span></span><span></span><span></span></div>
+    </div>
+    <script src="./js/vendors.js"></script>
+    <script src="./js/all.js"></script>
+  </body>
+</html>
