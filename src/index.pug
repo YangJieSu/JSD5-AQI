@@ -4,9 +4,9 @@ block content
     .container.d-flex.align-items-end
       .select-section
         h1.font-weight-bold 空氣品質指標 (AQI)
-        select(name="selectCountry")#selectCountry.font-weight-bold
+        select(name="selectCountry" v-model="selectCountry")#selectCountry.font-weight-bold
           option(value="" disabled selected style="display: none") 請選擇地區
-          option(value="台北市") 台北市
+          option(:value="item" v-for="item in filterCountry") {{ item }}
       .air-status
         table.table.mb-0
           thead
@@ -29,46 +29,49 @@ block content
                 | 不健康
               td 非常不健康
               td 危害
-  .dashboard
+  .dashboard(v-if="detailData.SiteName")
     .container
       .title.d-flex.align-items-center
-        h2.mb-0 未指定
+        h2.mb-0.font-weight-bold(v-if="selectCountry") {{ selectCountry }}
+        h2.mb-0.font-weight-bold(v-else) 全部
         span
         div.update 
-          span 2019-01-24 14:00
-          span 更新
+          span {{ updateTime }}
+          span(@click="getAQI()") 更新
       .d-flex.align-items-start
         .result-detail
           .detail-header.d-flex
-            span.font-weight-bold 前金
-            span.status 156
+            span.font-weight-bold {{ detailData.SiteName }}
+            span.status(:class="statusColor(detailData.Status)" v-if="detailData.AQI") {{ detailData.AQI }}            
+            span.font-weight-bold(v-else) N/A
           .detail-body
             ul.list-unstyled
               li.d-flex 
                 span 臭氧
                 span.engName O3 (ppb)
-                span 82
+                span {{ detailData.O3 }}
               li.d-flex
                 span 懸浮微粒
                 span.engName PM10 (μg/m³)
-                span 72
+                span {{ detailData["PM10"] }}
               li.d-flex
                 span 細懸浮微粒
                 span.engName PM2.5 (μg/m³)
-                span 67
+                span {{ detailData["PM2.5"] }}
               li.d-flex
                 span 一氧化碳
                 span.engName CO (ppm)
-                span 0.49
+                span {{ detailData.CO }}
               li.d-flex
                 span 二氧化硫
                 span.engName SO2 (ppb)
-                span 3.4
+                span {{ detailData.SO2 }}
               li.d-flex
                 span 二氧化氮
                 span.engName NO2 (ppb)
-                span 13
+                span {{ detailData.NO2 }}
         .result-list.d-flex.justify-content-between.flex-wrap
-          .detail-header.d-flex
-            span.font-weight-bold 前金
-            span.status 156
+          .detail-header.d-flex(v-for="item in filterCountryData")
+            span.font-weight-bold(@click="showDetail(item)") {{ item.SiteName }}
+            span.status(:class="statusColor(item.Status)" v-if="item.AQI") {{ item.AQI }}
+            span.status(v-else) N/A

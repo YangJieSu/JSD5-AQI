@@ -1,7 +1,10 @@
+.wrap {
+  position: relative;
+}
 @media (min-width: 1200px) {
   .container {
-      max-width: 1280px;
-      padding: 0 85px;
+    max-width: 1280px;
+    padding: 0 85px;
   }
 }
 main {
@@ -17,5 +20,40 @@ footer {
   }
   p {
     color: $white-100;
+  }
+}
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  span {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: $primary;
+    margin: 0 10px;
+    &:nth-child(1) {
+      animation: loadjump 0.6s 0.3s linear infinite;
+    }
+    &:nth-child(2) {
+      animation: loadjump 0.6s 0.2s linear infinite;
+    }
+    &:nth-child(3) {
+      animation: loadjump 0.6s 0.1s linear infinite;
+    }
+  }
+}
+@keyframes loadjump {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }

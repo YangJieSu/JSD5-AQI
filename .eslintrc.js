@@ -13,7 +13,12 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
+  plugins: [
+    'vue',
+  ],
   rules: {
+    'no-unused-vars': 0,
+    'no-undef': 0,
     'no-console': 0,
   },
 };

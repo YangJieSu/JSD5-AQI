@@ -3,11 +3,15 @@ html(lang="en")
   head
     include ./partial/_meta.pug    
   body
-    .wrap
+    #app.wrap
       header
       main
         block content
       footer
-        include ./partial/_footer.pug 
+        include ./partial/_footer.pug
+      .loading.d-flex.justify-content-center.align-items-center(v-if="loading")
+        span
+        span
+        span
     script(src="./js/vendors.js")
     script(src="./js/all.js")

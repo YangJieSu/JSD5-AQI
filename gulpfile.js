@@ -59,6 +59,8 @@ gulp.task('js', () => gulp.src('./src/js/**/*.js')
 gulp.task('vendorJs', () => gulp.src([
   './node_modules/jquery/dist/jquery.min.js',
   './node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
+  './node_modules/vue/dist/vue.js',
+  './node_modules/axios/dist/axios.js',
 ])
   .pipe($.concat('vendors.js'))
   .pipe($.if(options.env === 'production', $.uglify()))

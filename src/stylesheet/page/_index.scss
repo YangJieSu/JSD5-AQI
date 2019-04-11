@@ -9,7 +9,7 @@
     width: 350px;
     height: 56px;
     cursor: pointer;
-    transition: all .3s;
+    transition: all 0.3s;
     &:hover {
       border: 3px solid $orange;
     }
@@ -37,7 +37,7 @@
     }
     td {
       background-color: $white;
-      transition: all .3s;
+      transition: all 0.3s;
       font-family: $font-trad;
       &:hover {
         background-color: darken($white, 20%);
@@ -71,7 +71,7 @@
   .title {
     margin-bottom: 32px;
     h2 {
-      margin-right: 12px;      
+      margin-right: 12px;
       font-size: 36px;
       line-height: 54px;
     }
@@ -79,7 +79,7 @@
       flex: 1;
       position: relative;
       &:after {
-        content: '';
+        content: "";
         position: absolute;
         border: 1px dashed $black;
         left: 0;
@@ -94,6 +94,13 @@
           margin-right: 13px;
           line-height: 22px;
           font-family: $font-eng;
+        }
+        &:last-child {
+          cursor: pointer;
+          transition: all 0.3s;
+          &:hover {
+            color: $secondary;
+          }
         }
       }
     }
@@ -111,7 +118,7 @@
       font-size: 36px;
       line-height: 54px;
       border-right: none;
-      transition: background-color .3s;
+      transition: background-color 0.3s;
       &:hover {
         background-color: darken($white, 20%);
       }
@@ -160,10 +167,11 @@
 }
 .result-list {
   margin-left: 30px;
+  flex: 1;
   .detail-header {
     margin-bottom: 32px;
     box-shadow: 2px 2px 3px rgba($black, 0.5);
-    transition: all .3s;
+    transition: all 0.3s;
     &:hover {
       transform: translateY(-5px);
     }
@@ -171,7 +179,7 @@
       &:first-child {
         cursor: pointer;
         &:active {
-          box-shadow: 1px 1px 3px 2px rgba($black,0.7) inset;
+          box-shadow: 1px 1px 3px 2px rgba($black, 0.7) inset;
         }
       }
     }
