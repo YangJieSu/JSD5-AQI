@@ -41,7 +41,7 @@
     "gulp-sequence": "^1.0.0",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.2",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.2",
     "vue": "^2.6.10"
   },
   "dependencies": {
